@@ -1,0 +1,28 @@
+<div style="max-width:800px;margin:auto;padding:1rem;font-family:Arial,Helvetica,sans-serif;">
+  <h2>TinyURL - Angular Frontend</h2>
+
+  <div>
+    <input [(ngModel)]="url" placeholder="Enter URL" style="width:70%" />
+    <label><input type="checkbox" [(ngModel)]="isPrivate" /> Private</label>
+    <button (click)="create()">Shorten</button>
+  </div>
+
+  <div style="margin-top:1rem">
+    <input [(ngModel)]="searchQ" placeholder="Search by code or URL" />
+    <button (click)="search()">Search</button>
+    <button (click)="load()">Reset</button>
+  </div>
+
+  <table border="1" cellpadding="6" style="width:100%;margin-top:1rem;border-collapse:collapse">
+    <tr><th>Code</th><th>Original</th><th>Clicks</th><th>Actions</th></tr>
+    <tr *ngFor="let t of list">
+      <td><a href="http://localhost:5000/{{t.code}}" target="_blank">{{t.code}}</a></td>
+      <td>{{t.originalUrl}}</td>
+      <td>{{t.clicks}}</td>
+      <td>
+        <button (click)="copy(t.code)">Copy</button>
+        <button (click)="deleteItem(t.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
